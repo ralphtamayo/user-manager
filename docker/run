@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
+
+docker run \
+	-d \
+	--name user-manager \
+	--network=shared-docker-network \
+	--restart unless-stopped \
+	-e LOCAL_DOCKER_DEV=yes \
+	-v $DIR/php.ini:/usr/local/etc/php/php.ini \
+	-v $DIR/user-manager.conf:/etc/apache2/sites-enabled/user-manager.conf \
+	-v $DIR/..:/var/www/user-manager \
+	-v ~/.cache/composer:/home/docker-user/.composer/cache \
+	user-manager
