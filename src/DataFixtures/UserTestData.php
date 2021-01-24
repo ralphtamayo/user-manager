@@ -10,7 +10,8 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class UserTestData extends Fixture
 {
-	const USER_EMAIL = 'ralphtamayo@sample.com';
+	const USER_USERNAME = 'admin';
+	const USER_EMAIL = 'admin@sample.com';
 	const USER_PASSWORD = 'password123';
 
 	private $kernel;
@@ -29,9 +30,11 @@ class UserTestData extends Fixture
 		}
 
 		$user = new User();
-		$user->setEmail(self::USER_EMAIL);
-		$user->setPlaintextPassword(self::USER_PASSWORD);
-		$user->setFirstName('Administrator');
+		$user->setUsername(self::USER_USERNAME)
+			->setEmail(self::USER_EMAIL)
+			->setPlaintextPassword(self::USER_PASSWORD)
+			->setFirstName('Administrator')
+		;
 
 		$this->userManager->save($user);
 
