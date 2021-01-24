@@ -97,12 +97,12 @@ class User implements UserInterface
 		return $this;
 	}
 
-	public function getPlaintextPassword(): string
+	public function getPlaintextPassword(): ?string
 	{
 		return $this->plaintextPassword;
 	}
 
-	public function setPlaintextPassword(string $plaintextPassword): self
+	public function setPlaintextPassword(?string $plaintextPassword): self
 	{
 		$this->plaintextPassword = $plaintextPassword;
 
