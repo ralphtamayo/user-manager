@@ -31,6 +31,7 @@ class UserTestData extends Fixture
 		$user = new User();
 		$user->setEmail(self::USER_EMAIL);
 		$user->setPlaintextPassword(self::USER_PASSWORD);
+		$user->setFirstName('Administrator');
 
 		$this->userManager->save($user);
 
