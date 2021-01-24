@@ -79,7 +79,9 @@ class UserAuthenticator extends AbstractGuardAuthenticator implements LogoutSucc
 
 	public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
 	{
-		return JsonResponse::fromJsonString($this->serializer->serialize($token->getUser(), 'json'));
+		return JsonResponse::fromJsonString($this->serializer->serialize($token->getUser(), 'json', [
+			'groups' => 'login'
+		]));
 	}
 
 	public function start(Request $request, AuthenticationException $authException = null)
