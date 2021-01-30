@@ -19,10 +19,9 @@ class UserController extends BaseController
 
 		$this->processForm(UserRegistrationType::class, $user);
 
-		$userManager->save($user);
-
-		$this->getEm()->persist($user);
-		$this->getEm()->flush();
+		$this->transactional(function ($em) use ($user, $userManager) {
+			$userManager->save($user);
+		});
 
 		return JsonResponse::fromJsonString($this->getSerializer()->serialize($user, 'json'));
 	}

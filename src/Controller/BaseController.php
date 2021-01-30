@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 abstract class BaseController extends AbstractController
 {
-	protected function processForm(string $formType, $entity, $options = [])
+	protected function processForm(string $formType, $entity, $options = []): void
 	{
 		$request = $this->get('request_stack')->getCurrentRequest();
 
@@ -26,9 +26,9 @@ abstract class BaseController extends AbstractController
 		return $this->container->get($serviceName);
 	}
 
-	protected function getEm()
+	protected function transactional(\Closure $func): void
 	{
-		return $this->getDoctrine()->getManager();
+		$this->getDoctrine()->getManager()->transactional($func);
 	}
 
 	protected function getSerializer()
