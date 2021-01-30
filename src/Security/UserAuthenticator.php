@@ -40,16 +40,12 @@ class UserAuthenticator extends AbstractGuardAuthenticator implements LogoutSucc
 
 	public function getCredentials(Request $request)
 	{
-		$credentials = [
-			'email' => $request->request->get('email'),
-			'password' => $request->request->get('password'),
-		];
-
-		$request->getSession()->set(Security::LAST_USERNAME, $credentials['email']);
+		$data = json_decode($request->getContent(), true);
+		$request->getSession()->set(Security::LAST_USERNAME, $data['email']);
 
 		return [
-			'email' => $credentials['email'],
-			'password' => $credentials['password'],
+			'email' => $data['email'],
+			'password' => $data['password'],
 		];
 	}
 
