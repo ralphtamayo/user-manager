@@ -4,10 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"username"}, message="Username has already been used.")
+ * @UniqueEntity(fields={"email"}, message="Email has already been used.")
  */
 class User implements UserInterface
 {
@@ -20,11 +24,16 @@ class User implements UserInterface
 
 	/**
 	 * @ORM\Column(type="string", length=180, unique=true)
+	 * @Assert\NotBlank(message="Email must not be blank.")
+	 * @Assert\Email(message="Email is not valid.")
+	 * @Assert\Length(max=180, maxMessage="Email has to be less than {{ limit }} characters.")
 	 */
 	private $email;
 
 	/**
 	 * @ORM\Column(type="string", length=32, unique=true)
+	 * @Assert\NotBlank(message="Username must not be blank.")
+	 * @Assert\Length(max=32, maxMessage="Username has to be less than {{ limit }} characters.")
 	 */
 	private $username;
 
@@ -39,15 +48,22 @@ class User implements UserInterface
 	 */
 	private $password;
 
+	/**
+	 * @Assert\NotBlank(message="Password must not be blank.")
+	 * @Assert\Length(max=128, maxMessage="Password has to be less than {{ limit }} characters.")
+	 */
 	private $plaintextPassword;
 
 	/**
 	 * @ORM\Column(type="string", length=50)
+	 * @Assert\NotBlank(message="First name must not be blank.")
+	 * @Assert\Length(max=50, maxMessage="First name has to be less than {{ limit }} characters.")
 	 */
 	private $firstName;
 
 	/**
 	 * @ORM\Column(type="string", length=50, nullable=true)
+	 * @Assert\Length(max=50, maxMessage="Last name has to be less than {{ limit }} characters.")
 	 */
 	private $lastName;
 
@@ -126,12 +142,12 @@ class User implements UserInterface
 		return $this;
 	}
 
-	public function getFirstName(): string
+	public function getFirstName(): ?string
 	{
 		return $this->firstName;
 	}
 
-	public function setFirstName(string $firstName): self
+	public function setFirstName(?string $firstName): self
 	{
 		$this->firstName = $firstName;
 
