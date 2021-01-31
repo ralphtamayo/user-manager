@@ -34,6 +34,7 @@ class UserTestData extends Fixture
 			->setEmail(self::USER_EMAIL)
 			->setPlaintextPassword(self::USER_PASSWORD)
 			->setFirstName('Administrator')
+			->setRoles(['ROLE_ADMIN'])
 		;
 
 		$this->userManager->save($user);

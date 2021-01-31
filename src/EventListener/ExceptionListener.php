@@ -3,34 +3,37 @@
 namespace App\EventListener;
 
 use App\Exception\FormException;
+use App\Exception\NotFoundException;
+use App\Service\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ExceptionListener
 {
-	private $serializer;
+	private $responseBuilder;
 
-	public function __construct(SerializerInterface $serializer)
+	public function __construct(ResponseBuilder $responseBuilder)
 	{
-		$this->serializer = $serializer;
+		$this->responseBuilder = $responseBuilder;
 	}
 
 	public function onKernelException(ExceptionEvent $event)
 	{
 		$exception = $event->getException();
+		$error = ['error' => [
+			'status' => $exception->getStatusCode()
+		]];
 
 		if ($exception instanceof FormException) {
-			$response = JsonResponse::fromJsonString($this->serializer->serialize([
-				'error' => [
-					'status' => $exception->getStatusCode(),
-					'message' => 'invalid-form',
-				],
-				'form' => $this->buildFormErrors($exception),
-			], 'json'));
-
-			$event->setResponse($response);
+			$error['error']['message'] = 'invalid-form';
+			$error['form'] = $this->buildFormErrors($exception);
+		} elseif ($exception instanceof NotFoundException) {
+			$error['error']['message'] = 'not-found';
 		}
+
+		$response = $this->responseBuilder->createJsonResponse($error);
+		$event->setResponse($response);
 	}
 
 	private function buildFormErrors($exception)

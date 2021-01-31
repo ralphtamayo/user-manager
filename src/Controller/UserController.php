@@ -12,6 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends BaseController
 {
 	/**
+	 * @Route("/profile", methods="GET")
+	 */
+	public function profile(ResponseBuilder $responseBuilder): JsonResponse
+	{
+		return $responseBuilder->createJsonResponse($this->getUser(), ['groups' => 'profile']);
+	}
+
+	/**
 	 * @Route("/register", methods="POST")
 	 */
 	public function register(UserManager $userManager, ResponseBuilder $responseBuilder): JsonResponse

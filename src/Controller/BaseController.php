@@ -30,4 +30,9 @@ abstract class BaseController extends AbstractController
 	{
 		$this->getDoctrine()->getManager()->transactional($func);
 	}
+
+	protected function getRepo(string $entityClass)
+	{
+		return $this->getDoctrine()->getManager()->getRepository($entityClass);
+	}
 }

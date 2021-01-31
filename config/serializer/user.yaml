@@ -1,14 +1,14 @@
 App\Entity\User:
     attributes:
         id:
-            groups: ['login']
+            groups: ['login', 'profile', 'list', 'details']
         firstName:
-            groups: ['login']
+            groups: ['login', 'profile', 'list', 'details']
         lastName:
-            groups: ['login']
+            groups: ['login', 'profile', 'list', 'details']
         username:
-            groups: ['login']
+            groups: ['login', 'profile', 'details']
         email:
-            groups: ['login']
+            groups: ['login', 'profile', 'list', 'details']
         roles:
-            groups: ['login']
+            groups: ['login', 'details']
