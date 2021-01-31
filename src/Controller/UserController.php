@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserRegistrationType;
 use App\Manager\UserManager;
+use App\Service\ResponseBuilder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,7 +14,7 @@ class UserController extends BaseController
 	/**
 	 * @Route("/register", methods="POST")
 	 */
-	public function register(UserManager $userManager): JsonResponse
+	public function register(UserManager $userManager, ResponseBuilder $responseBuilder): JsonResponse
 	{
 		$user = new User();
 
@@ -23,6 +24,6 @@ class UserController extends BaseController
 			$userManager->save($user);
 		});
 
-		return JsonResponse::fromJsonString($this->getSerializer()->serialize($user, 'json'));
+		return $responseBuilder->createJsonResponse($user);
 	}
 }

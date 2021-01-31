@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Service\ResponseBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -15,7 +15,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Http\Logout\LogoutSuccessHandlerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class UserAuthenticator extends AbstractGuardAuthenticator implements LogoutSuccessHandlerInterface
 {
@@ -25,12 +24,12 @@ class UserAuthenticator extends AbstractGuardAuthenticator implements LogoutSucc
 	const ERROR_TYPE_AUTHENTICATION_REQUIRED = 'authentication-required';
 
 	private $passwordEncoder;
-	private $serializer;
+	private $responseBuilder;
 
-	public function __construct(UserPasswordEncoderInterface $passwordEncoder, SerializerInterface $serializer)
+	public function __construct(UserPasswordEncoderInterface $passwordEncoder, ResponseBuilder $responseBuilder)
 	{
 		$this->passwordEncoder = $passwordEncoder;
-		$this->serializer = $serializer;
+		$this->responseBuilder = $responseBuilder;
 	}
 
 	public function supports(Request $request)
@@ -75,9 +74,7 @@ class UserAuthenticator extends AbstractGuardAuthenticator implements LogoutSucc
 
 	public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
 	{
-		return JsonResponse::fromJsonString($this->serializer->serialize($token->getUser(), 'json', [
-			'groups' => 'login',
-		]));
+		return $this->responseBuilder->createJsonResponse($token->getUser(), ['groups' => 'login']);
 	}
 
 	public function start(Request $request, AuthenticationException $authException = null)
@@ -101,6 +98,6 @@ class UserAuthenticator extends AbstractGuardAuthenticator implements LogoutSucc
 			'code' => $statusCode,
 		] + $extras];
 
-		return JsonResponse::fromJsonString($this->serializer->serialize($response, 'json'));
+		return $this->responseBuilder->createJsonResponse($response);
 	}
 }

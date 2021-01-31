@@ -30,9 +30,4 @@ abstract class BaseController extends AbstractController
 	{
 		$this->getDoctrine()->getManager()->transactional($func);
 	}
-
-	protected function getSerializer()
-	{
-		return $this->get('serializer');
-	}
 }
