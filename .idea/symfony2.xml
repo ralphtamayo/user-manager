@@ -3,10 +3,10 @@
   <component name="Symfony2PluginSettings">
     <option name="directoryToWeb" value="public" />
     <option name="directoryToApp" value="bin" />
-    <option name="pluginEnabled" value="true" />
     <option name="codeFoldingPhpTemplate" value="false" />
     <option name="codeFoldingTwigTemplate" value="false" />
     <option name="codeFoldingTwigConstant" value="false" />
     <option name="featureTwigIcon" value="false" />
+    <option name="dismissEnableNotification" value="true" />
   </component>
 </project>

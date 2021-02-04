@@ -31,10 +31,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="33a22dbc-fade-4a42-8df5-da1925235227" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/user-manager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/user-manager.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +143,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
-    <property name="settings.editor.selected.configurable" value="Symfony2.SettingsForm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -160,7 +158,10 @@
       <workItem from="1612442058877" duration="1184000" />
       <workItem from="1612443256457" duration="1089000" />
       <workItem from="1612444371664" duration="27000" />
-      <workItem from="1612444425371" duration="144000" />
+      <workItem from="1612444425371" duration="426000" />
+      <workItem from="1612444872318" duration="274000" />
+      <workItem from="1612445164962" duration="134000" />
+      <workItem from="1612445327764" duration="524000" />
     </task>
     <servers />
   </component>
@@ -188,21 +189,29 @@
       <screen x="0" y="27" width="3072" height="1701" />
     </state>
     <state x="707" y="598" width="424" height="496" key="FileChooserDialogImpl/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612444498586" />
-    <state x="1424" y="682" width="1016" height="742" key="SettingsEditor" timestamp="1612444553145">
+    <state x="1827" y="681" width="949" height="605" key="Registry" timestamp="1612445041967">
       <screen x="0" y="27" width="3072" height="1701" />
     </state>
-    <state x="1424" y="682" width="1016" height="742" key="SettingsEditor/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612444553145" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1612443577426">
+    <state x="1827" y="681" width="949" height="605" key="Registry/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612445041967" />
+    <state x="927" y="653" width="1016" height="742" key="SettingsEditor" timestamp="1612445666628">
       <screen x="0" y="27" width="3072" height="1701" />
     </state>
-    <state width="498" height="446" key="SwitcherDM/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612443577426" />
+    <state x="927" y="653" width="1016" height="742" key="SettingsEditor/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612445666628" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1612444977811">
+      <screen x="0" y="27" width="3072" height="1701" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612444977811" />
     <state x="1636" y="90" width="1324" height="1533" key="dock-window-1" timestamp="1612442817847">
       <screen x="0" y="27" width="3072" height="1701" />
     </state>
     <state x="1636" y="90" width="1324" height="1533" key="dock-window-1/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612442817847" />
-    <state x="1961" y="397" width="672" height="678" key="search.everywhere.popup" timestamp="1612443575478">
+    <state x="1968" y="405" key="run.anything.popup" timestamp="1612444975106">
       <screen x="0" y="27" width="3072" height="1701" />
     </state>
-    <state x="1961" y="397" width="672" height="678" key="search.everywhere.popup/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612443575478" />
+    <state x="1968" y="405" key="run.anything.popup/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612444975106" />
+    <state x="1961" y="397" width="672" height="678" key="search.everywhere.popup" timestamp="1612444986204">
+      <screen x="0" y="27" width="3072" height="1701" />
+    </state>
+    <state x="1961" y="397" width="672" height="678" key="search.everywhere.popup/3072.0.1920.1080/0.27.3072.1701@0.27.3072.1701" timestamp="1612444986204" />
   </component>
 </project>
