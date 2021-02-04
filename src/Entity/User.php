@@ -49,7 +49,7 @@ class User implements UserInterface
 	private $password;
 
 	/**
-	 * @Assert\NotBlank(message="Password must not be blank.")
+	 * @Assert\NotBlank(message="Password must not be blank.", groups={"registration"})
 	 * @Assert\Length(max=128, maxMessage="Password has to be less than {{ limit }} characters.")
 	 */
 	private $plaintextPassword;

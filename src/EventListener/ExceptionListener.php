@@ -5,9 +5,7 @@ namespace App\EventListener;
 use App\Exception\FormException;
 use App\Exception\NotFoundException;
 use App\Service\ResponseBuilder;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
-use Symfony\Component\Serializer\SerializerInterface;
 
 class ExceptionListener
 {
@@ -22,7 +20,7 @@ class ExceptionListener
 	{
 		$exception = $event->getException();
 		$error = ['error' => [
-			'status' => $exception->getStatusCode()
+			'status' => $exception->getStatusCode(),
 		]];
 
 		if ($exception instanceof FormException) {
