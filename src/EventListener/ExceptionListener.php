@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use App\Exception\FormException;
+use App\Exception\InvalidActionException;
 use App\Exception\NotFoundException;
 use App\Service\ResponseBuilder;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
@@ -28,6 +29,8 @@ class ExceptionListener
 			$error['form'] = $this->buildFormErrors($exception);
 		} elseif ($exception instanceof NotFoundException) {
 			$error['error']['message'] = 'not-found';
+		} elseif ($exception instanceof InvalidActionException) {
+			$error['error']['message'] = 'invalid-action';
 		}
 
 		$response = $this->responseBuilder->createJsonResponse($error);

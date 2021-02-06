@@ -23,4 +23,18 @@ class UserManager
 
 		$this->_em->persist($user);
 	}
+
+	public function enable(User $user)
+	{
+		$user->setIsEnabled(true);
+
+		$this->_em->persist($user);
+	}
+
+	public function disable(User $user)
+	{
+		$user->setIsEnabled(false);
+
+		$this->_em->persist($user);
+	}
 }
