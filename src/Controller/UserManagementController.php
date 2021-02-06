@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Exception\InvalidActionException;
 use App\Exception\NotFoundException;
 use App\Form\UserRegistrationType;
 use App\Form\UserType;
@@ -78,6 +79,54 @@ class UserManagementController extends BaseController
 
 		$this->transactional(function ($em) use ($user, $userManager) {
 			$userManager->save($user);
+		});
+
+		return $responseBuilder->createJsonResponse($user, ['groups' => 'details']);
+	}
+
+	/**
+	 * @Route("/{id}/enable", methods="PUT")
+	 */
+	public function enable(int $id, UserManager $userManager, ResponseBuilder $responseBuilder): JsonResponse
+	{
+		$this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+		$user = $this->getRepo(User::class)->findOneById($id);
+
+		if ($user === null) {
+			throw new NotFoundException();
+		}
+
+		if ($user->isEnabled()) {
+			throw new InvalidActionException();
+		}
+
+		$this->transactional(function ($em) use ($user, $userManager) {
+			$userManager->enable($user);
+		});
+
+		return $responseBuilder->createJsonResponse($user, ['groups' => 'details']);
+	}
+
+	/**
+	 * @Route("/{id}/disable", methods="PUT")
+	 */
+	public function disable(int $id, UserManager $userManager, ResponseBuilder $responseBuilder): JsonResponse
+	{
+		$this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+		$user = $this->getRepo(User::class)->findOneById($id);
+
+		if ($user === null) {
+			throw new NotFoundException();
+		}
+
+		if (!$user->isEnabled()) {
+			throw new InvalidActionException();
+		}
+
+		$this->transactional(function ($em) use ($user, $userManager) {
+			$userManager->disable($user);
 		});
 
 		return $responseBuilder->createJsonResponse($user, ['groups' => 'details']);

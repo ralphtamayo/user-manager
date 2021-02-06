@@ -67,6 +67,11 @@ class User implements UserInterface
 	 */
 	private $lastName;
 
+	/**
+	 * @ORM\Column(type="boolean")
+	 */
+	private $isEnabled = true;
+
 	public function getId(): ?int
 	{
 		return $this->id;
@@ -162,6 +167,18 @@ class User implements UserInterface
 	public function setLastName(?string $lastName): self
 	{
 		$this->lastName = $lastName;
+
+		return $this;
+	}
+
+	public function isEnabled(): ?bool
+	{
+		return $this->isEnabled;
+	}
+
+	public function setIsEnabled(string $isEnabled): self
+	{
+		$this->isEnabled = $isEnabled;
 
 		return $this;
 	}

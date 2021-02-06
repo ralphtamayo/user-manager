@@ -12,3 +12,5 @@ App\Entity\User:
             groups: ['login', 'profile', 'list', 'details']
         roles:
             groups: ['login', 'details']
+        isEnabled:
+            groups: ['list', 'details']
